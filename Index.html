@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AgroSense — Smart Crop Advisor</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Ambient background shapes -->
+  <div class="bg-orb orb1"></div>
+  <div class="bg-orb orb2"></div>
+  <div class="bg-orb orb3"></div>
+
+  <div class="page-wrap">
+
+    <!-- ── HEADER ── -->
+    <header class="site-header">
+      <div class="logo">
+        <span class="logo-leaf">🌱</span>
+        <span class="logo-text">AgroSense</span>
+      </div>
+      <p class="tagline">AI-powered crop intelligence for smarter harvests</p>
+    </header>
+
+    <!-- ── MAIN CARD ── -->
+    <main class="card-shell">
+
+      <!-- Left panel: Form -->
+      <section class="form-panel">
+        <h2 class="panel-title">Field Parameters</h2>
+        <p class="panel-sub">Describe your land conditions to get personalised recommendations.</p>
+
+        <div class="field-grid">
+
+          <!-- Soil Type -->
+          <div class="field-group span2">
+            <label for="soilType">Soil Type</label>
+            <div class="select-wrap">
+              <select id="soilType">
+                <option value="">— Select soil —</option>
+                <option value="Loamy">Loamy</option>
+                <option value="Sandy">Sandy</option>
+                <option value="Clay">Clay</option>
+                <option value="Silty">Silty</option>
+                <option value="Peaty">Peaty</option>
+              </select>
+              <span class="select-icon">▾</span>
+            </div>
+          </div>
+
+          <!-- Soil pH -->
+          <div class="field-group">
+            <label for="soilPH">Soil pH <span class="hint">(0–14)</span></label>
+            <input type="number" id="soilPH" min="0" max="14" step="0.1" placeholder="e.g. 6.5" />
+          </div>
+
+          <!-- Temperature -->
+          <div class="field-group">
+            <label for="temperature">Temperature <span class="hint">(°C)</span></label>
+            <input type="number" id="temperature" min="-10" max="60" step="0.5" placeholder="e.g. 28" />
+          </div>
+
+          <!-- Water Availability -->
+          <div class="field-group span2">
+            <label>Water Availability</label>
+            <div class="radio-row">
+              <label class="radio-card">
+                <input type="radio" name="water" value="Low" />
+                <span class="rc-inner">
+                  <span class="rc-icon">💧</span>
+                  <span class="rc-label">Low</span>
+                </span>
+              </label>
+              <label class="radio-card">
+                <input type="radio" name="water" value="Medium" checked />
+                <span class="rc-inner">
+                  <span class="rc-icon">💧💧</span>
+                  <span class="rc-label">Medium</span>
+                </span>
+              </label>
+              <label class="radio-card">
+                <input type="radio" name="water" value="High" />
+                <span class="rc-inner">
+                  <span class="rc-icon">💧💧💧</span>
+                  <span class="rc-label">High</span>
+                </span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Wind Velocity -->
+          <div class="field-group">
+            <label for="windVelocity">Wind Speed <span class="hint">(km/h)</span></label>
+            <input type="number" id="windVelocity" min="0" max="200" step="1" placeholder="e.g. 12" />
+          </div>
+
+          <!-- Area -->
+          <div class="field-group">
+            <label for="area">Field Area <span class="hint">(acres)</span></label>
+            <input type="number" id="area" min="0.1" step="0.1" placeholder="e.g. 2.5" />
+          </div>
+
+        </div><!-- /field-grid -->
+
+        <div class="action-row">
+          <button id="analyseBtn" class="btn-analyse">
+            <span class="btn-icon">🔍</span>
+            Analyse Crops
+          </button>
+          <button id="resetBtn" class="btn-reset" title="Undo / Reset">↩ Reset</button>
+        </div>
+
+        <div id="statusMsg" class="status-msg hidden"></div>
+
+      </section><!-- /form-panel -->
+
+      <!-- Right panel: Results -->
+      <section class="result-panel" id="resultPanel">
+
+        <div class="result-placeholder" id="placeholder">
+          <div class="placeholder-art">🌾</div>
+          <p>Fill in your field parameters<br/>and click <strong>Analyse Crops</strong></p>
+        </div>
+
+        <div id="resultsContainer" class="hidden">
+          <h2 class="panel-title">Top Crop Matches</h2>
+
+          <div id="poorMatchAlert" class="poor-alert hidden">
+            ⚠️ Low compatibility detected — consider improving soil conditions.
+          </div>
+
+          <div id="cropCards" class="crop-list"></div>
+
+          <div class="result-footer">
+            <p id="inputSummary" class="input-summary"></p>
+          </div>
+        </div>
+
+      </section><!-- /result-panel -->
+
+    </main><!-- /card-shell -->
+
+    <footer class="site-footer">
+      <p>AgroSense © 2025 — Smart Agriculture Project &nbsp;|&nbsp; C++ DSA Backend + HTML/CSS/JS Frontend</p>
+    </footer>
+
+  </div><!-- /page-wrap -->
+
+  <script src="script.js"></script>
+</body>
+</html>
